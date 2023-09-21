@@ -1,10 +1,16 @@
 // Assignment Code
-var lowercaseLetters =  ["abcdefghijklmnopqrstuvwxyz"]
-var upperCaseLetters = ["ABCDEFGHIJKLMNOPQRSTUVWXYZ"]
-var numericCharacters = ["1234567890"]
-var specialCharacters = ["~`!@#$%^&*()_-><.,;:'?+={[*/}]"]
+var lowercaseLetters = "abcdefghijklmnopqrstuvwxyz".split('');
+var upperCaseLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split('');
+var numericCharacters = "1234567890".split('');
+var specialCharacters = "~!@#$%^&*".split('');
+
 var generateBtn = document.querySelector("#generate");
 
+function getRandom(arr){
+  var randomIndex = Math.floor(Math.random() * arr.length)
+  var randomElement = arr[randomIndex];
+  return randomElement;
+}
 
 function getCriteria(){
   var passwordLength = parseInt(prompt("How many characters would you like your password to contain?"));
@@ -49,8 +55,45 @@ function generatePassword () {
   console.log ("generate passowrd function running")
   var criteria = getCriteria();
   console.log(criteria);
-  var password = "Max Blaul";
-  return password ;
+  //store password as we concatenate
+  var result = [];
+  //store possible types of chars 
+  var possibleChars = [];
+  //array to store guaranteed chars
+  var guaranteedChars = [];
+  //check that criteria exists
+  if(!criteria) return null;
+
+  if(criteria.hasSpecial){
+    possibleChars = possibleChars.concat(specialCharacters);
+    guaranteedChars.push(getRandom(specialCharacters));
+  }
+  if(criteria.hasUpper){
+    possibleChars = possibleChars.concat(upperCaseLetters);
+    guaranteedChars.push(getRandom(upperCaseLetters));
+  }
+  if(criteria.hasLower){
+    possibleChars = possibleChars.concat(lowercaseLetters);
+    guaranteedChars.push(getRandom(lowercaseLetters));
+  }
+  if(criteria.hasNumbers){
+    possibleChars = possibleChars.concat(numericCharacters);
+    guaranteedChars.push(getRandom(numericCharacters));
+  }
+  console.log("Possible Chars: " + possibleChars);
+  console.log("Guaranteed Chars: " + guaranteedChars);
+  //iterate over the passowrd length from our object selecting a random element
+  for(var i = 0; i < criteria.passwordLength; i++){
+    var possibleCharacter = getRandom(possibleChars);
+    result.push(possibleCharacter);
+  }
+  //loop over guaranteed chars making sure atleast one is in the array
+  for(var i = 0; i < guaranteedChars.length; i++){
+    result[i] = guaranteedChars[i];
+  }
+  console.log(result);
+  //convert array back to string
+  return result.join("");
 }
 
 function writePassword() {
