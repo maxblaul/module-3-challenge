@@ -1,4 +1,4 @@
-// Assignment Code
+// Assignment Code  List of variables for password, made a string and then split to make an array
 var lowercaseLetters = "abcdefghijklmnopqrstuvwxyz".split('');
 var upperCaseLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split('');
 var numericCharacters = "1234567890".split('');
@@ -11,7 +11,7 @@ function getRandom(arr){
   var randomElement = arr[randomIndex];
   return randomElement;
 }
-
+// Function to get random outcome from array above
 function getCriteria(){
   var passwordLength = parseInt(prompt("How many characters would you like your password to contain?"));
   console.log(passwordLength);
@@ -63,23 +63,27 @@ function generatePassword () {
   var guaranteedChars = [];
   //check that criteria exists
   if(!criteria) return null;
-
+// Designates that if the user does not submit a number for character quantity that it comes back null.
   if(criteria.hasSpecial){
     possibleChars = possibleChars.concat(specialCharacters);
     guaranteedChars.push(getRandom(specialCharacters));
   }
+  // if user chooses special chars then it will be pushed from possible to guranteed chars.
   if(criteria.hasUpper){
     possibleChars = possibleChars.concat(upperCaseLetters);
     guaranteedChars.push(getRandom(upperCaseLetters));
   }
+  // if user chooses upper case letters then it will be pushed from possible to guranteed chars.
   if(criteria.hasLower){
     possibleChars = possibleChars.concat(lowercaseLetters);
     guaranteedChars.push(getRandom(lowercaseLetters));
   }
+  // if user chooses lower case letters then it will be pushed from possible to guranteed chars.
   if(criteria.hasNumbers){
     possibleChars = possibleChars.concat(numericCharacters);
     guaranteedChars.push(getRandom(numericCharacters));
   }
+  // if user chooses numbers  then it will be pushed from possible to guranteed chars.
   console.log("Possible Chars: " + possibleChars);
   console.log("Guaranteed Chars: " + guaranteedChars);
   //iterate over the passowrd length from our object selecting a random element
@@ -106,8 +110,3 @@ function writePassword() {
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
-
-// var firstName = "Al"
-// var firstNameHalf = "ex"
-// firstName = firstName.concat(firstNameHalf)
-// console.log(firstName)
