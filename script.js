@@ -31,7 +31,7 @@ function getCriteria(){
   var hasUpper = confirm("Click OK to confirm using upper chars");
   var hasLower = confirm("Click Ok to confirm using lower chars");
   var hasSpecial = confirm("Click OK to confirm using special chars");
-
+// user selects what the password has
   if(!hasNumbers &&
      !hasUpper &&
      !hasLower &&
@@ -39,6 +39,7 @@ function getCriteria(){
       alert("Must select atleast on char type");
       return null;
      }
+    //  returns null if user says cancel to all variables
 
      var passwordCriteria = {
       passwordLength: passwordLength,
@@ -47,7 +48,7 @@ function getCriteria(){
       hasLower: hasLower,
       hasNumbers: hasNumbers
      };
-
+// returns back password criteria and logs it
      return passwordCriteria;
 }
 // Write password to the #password input
